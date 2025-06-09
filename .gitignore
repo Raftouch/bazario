@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Virtual env
+venv/
+env/
+.venv/
+.env/
+
+# Django
+*.sqlite3
+db.sqlite3
+*.pot
+*.pyc
+*.pyo
+
+.vscode/
+.idea/
+
+staticfiles/
+static_root/
+
+media/
+
+.env
+.env.*
+
+**/migrations/__pycache__/
+**/migrations/*.pyc
+**/migrations/*.pyo
+
+.DS_Store
+Thumbs.db
+
+htmlcov/
+.coverage
+.tox/
+.cache/
+.pytest_cache/
