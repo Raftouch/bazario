@@ -67,3 +67,9 @@ MEDIA_ROOT = BASE_DIR / 'media'
 ```bash
 python manage.py runserver
 ```
+
+#### Create superuser
+
+```bash
+python manage.py createsuperuser
+```
