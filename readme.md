@@ -54,3 +54,16 @@ python manage.py migrate
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 ```
+
+#### Register models in admin.py
+
+```bash
+@admin.register(Category)
+@admin.register(Product)
+```
+
+#### Run server to check all is correct
+
+```bash
+python manage.py runserver
+```
