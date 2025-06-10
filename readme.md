@@ -47,3 +47,10 @@ python manage.py makemigrations
 ```bash
 python manage.py migrate
 ```
+
+#### Add destination for images in settings.py
+
+```bash
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+```
