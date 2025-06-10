@@ -33,3 +33,17 @@ cd bazario
 ```bash
 python manage.py startapp main
 ```
+
+#### Add models to models.py
+
+#### Create added models
+
+```bash
+python manage.py makemigrations
+```
+
+#### Migrate models to database
+
+```bash
+python manage.py migrate
+```
