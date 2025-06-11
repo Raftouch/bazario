@@ -73,3 +73,36 @@ python manage.py runserver
 ```bash
 python manage.py createsuperuser
 ```
+
+#### Include new url pattern
+
+```bash
+path('', include('main.urls', namespace='main')),
+```
+
+#### Create urls.py in main app (folder) & add paths to views
+
+```bash
+app_name = 'main'
+
+urlpatterns = [
+    path('', views.featured_products, name='featured_products'),
+    path('<slug:slug>/', views.product_details, name='product_details')
+]
+```
+
+#### Add path to static files in settings.py
+
+```bash
+STATICFILES_DIRS = [BASE_DIR / 'main' / 'static']
+```
+
+#### Add url patterns in urls
+
+```bash
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+```
+
+#### Add templates & styles
