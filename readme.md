@@ -34,7 +34,21 @@ cd bazario
 python manage.py startapp main
 ```
 
+#### Include main module in the INSTALLED_APPS list in settings.py
+
+```bash
+'main'
+```
+
 #### Add models to models.py
+
+```bash
+class Category(models.Model):
+...
+
+class Product(models.Model):
+...
+```
 
 #### Create added models
 
@@ -105,4 +119,33 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
+#### Install bootstrap5
+
+```bash
+pip install django-bootstrap-v5
+```
+
+#### Include bootstrap5 module in the INSTALLED_APPS list in settings.py
+
+```bash
+'bootstrap5'
+```
+
+#### Insert bootstrap into <head> in base.html
+
+```bash
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+```
+
 #### Add templates & styles
+
+```bash
+static / images
+static / styles
+```
+
+```bash
+templates / main
+```
