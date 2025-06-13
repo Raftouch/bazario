@@ -94,6 +94,13 @@ python manage.py createsuperuser
 path('', include('main.urls', namespace='main')),
 ```
 
+#### Add views
+
+```bash
+def featured_products(request):
+def product_details(request, slug):
+```
+
 #### Create urls.py in main app (folder) & add paths to views
 
 ```bash
@@ -148,4 +155,16 @@ static / styles
 
 ```bash
 templates / main
+```
+
+#### Add new view
+
+```bash
+def product_list(request, category_slug=None):
+```
+
+#### Update urlpatterns in urls.py for new views
+
+```bash
+path()
 ```
