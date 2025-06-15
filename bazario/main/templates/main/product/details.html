@@ -1,29 +1,38 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %} 
+{% block title %}
     {{ product.name }}
 {% endblock title %}
 
 {% block content %}
-    <div class="product-details d-flex">
-        <div class="product-image">
-            <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'images/noimage.png' %} {% endif %}" alt="" class="product-details-image">
+<div class="container mx-auto py-8 px-4">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+        <div class="w-full lg:w-1/2 bg-white rounded shadow p-4">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/noimage.png' %}{% endif %}" 
+                 alt="{{ product.name }}"
+                 class="w-full object-contain max-h-[400px] rounded">
         </div>
-         <div class="product-description">
-            <h2>{{ product.name }}</h2>
-            <h3>Category: {{ product.category }}</h3>
-            <p>{{ product.description|linebreaks }}</p>
-            {% if product.discount %} 
-                <div class="card-discount d-flex gap-2">
-                    <p class="old-price">{{ product.price }}</p>
-                    <p>{{ product.get_price_with_discount}}</p>
-                </div>
 
+        <div class="w-full lg:w-1/2 space-y-4">
+            <h2 class="text-3xl font-bold">{{ product.name }}</h2>
+            <h3 class="text-sm text-gray-500">Category: {{ product.category.name }}</h3>
+            <p class="text-gray-700 leading-relaxed">{{ product.description|linebreaks }}</p>
+
+            {% if product.discount %}
+                <div class="flex gap-4 items-center text-red-600">
+                    <p class="line-through text-gray-500 text-lg">{{ product.price }} €</p>
+                    <p class="text-2xl font-bold">{{ product.get_price_with_discount }} €</p>
+                </div>
             {% else %}
-                <p class="price">{{ product.price }}</p>
+                <p class="text-2xl font-bold">{{ product.price }} €</p>
             {% endif %}
-            <a href="#" class="cart-btn">Add to cart</a>
+
+            <a href="#"
+               class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition">
+                Add to cart
+            </a>
         </div>
     </div>
+</div>
 {% endblock content %}

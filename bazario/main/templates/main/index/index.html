@@ -1,35 +1,39 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
-{% block title %} Home {% endblock title %}
+{% block title %}Home{% endblock title %}
 
-{% block content %} 
-    <section class="home d-flex flex-column">
-        <div class="home-title">
-            <a href="/products" class="home-btn mt-4">All products</a>
-        </div>
-        <div class="home-recommended">
-            <div class="rec-title">
-                <h3><span>Popular</span></h3>
-            </div>
-        </div>
-        <div class="home-cards d-flex gap-4">
-            {% for product in products %} 
-                <a href="{{ product.get_absolute_url}}" class="home-card d-flex flex-column align-items-center text-center">
-                    <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static 'images/noimage.png' %} {% endif %}" alt="card-img" class="card-img">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    {% if product.discount %} 
-                        <div class="card-discount d-flex gap-2">
-                            <p class="old-price">{{ product.price }}</p>
-                            <p>{{ product.get_price_with_discount}}</p>
-                        </div>
+{% block content %}
+<section class="flex flex-col gap-8 p-4">
+    <div class="text-center">
+        <a href="/products" class="inline-block bg-blue-600 text-white font-semibold py-2 px-6 rounded hover:bg-blue-700 transition mt-4">
+            All products
+        </a>
+    </div>
+
+    <div>
+        <h3 class="text-2xl font-bold text-center">
+            <span class="border-b-4 border-blue-600 pb-1">Last added</span>
+        </h3>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for product in products %}
+            <a href="{{ product.get_absolute_url }}" class="border rounded-lg shadow hover:shadow-md transition p-4 flex flex-col items-center text-center bg-white">
+                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'images/noimage.png' %}{% endif %}" 
+                     alt="{{ product.name }}" class="h-40 object-contain mb-4">
+                <h5 class="text-lg font-semibold mb-2">{{ product.name }}</h5>
+
+                <div class="flex justify-center items-center gap-2 mt-2">
+                    {% if product.discount %}
+                        <p class="line-through text-sm text-gray-500">{{ product.price }} €</p>
+                        <p class="text-sm font-semibold text-red-600">{{ product.get_price_with_discount }} €</p>
                     {% else %}
-                        <p class="price">{{ product.price }}</p>
+                        <p class="text-sm font-semibold">{{ product.price }} €</p>
                     {% endif %}
-                </a>
-            {% endfor %}
-        </div>
-    </section>
-    <img src="{% static 'images/..png' %}" alt="" class="home-logo">
-    <img src="{% static 'images/..png' %}" alt="" class="home-subtitle">
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</section>
 {% endblock content %}
