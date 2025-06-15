@@ -1,3 +1,4 @@
 django
 Pillow
-django-bootstrap-v5
+django-tailwind
+django_browser_reload
