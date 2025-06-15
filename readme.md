@@ -69,6 +69,12 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 ```
 
+#### Install module for images
+
+```bash
+python -m pip install Pillow
+```
+
 #### Register models in admin.py
 
 ```bash
@@ -126,7 +132,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 ```
 
-#### Install bootstrap5
+<!-- #### Install bootstrap5
 
 ```bash
 pip install django-bootstrap-v5
@@ -144,7 +150,7 @@ pip install django-bootstrap-v5
 {% load bootstrap5 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
-```
+``` -->
 
 #### Add templates & styles
 
@@ -167,4 +173,118 @@ def product_list(request, category_slug=None):
 
 ```bash
 path()
+```
+
+### CONFIGURE TAILWINDCSS FOR DJANGO
+
+#### Install Tailwind for Django
+
+```bash
+python -m pip install django-tailwind
+```
+
+#### Add 'tailwind' to INSTALLED_APPS list in settings.py
+
+```bash
+'tailwind'
+```
+
+#### Initialize Tailwind
+
+```bash
+python manage.py tailwind init
+```
+
+#### app_name (theme):
+
+Leave as is or add another app name
+That creates a new folder 'theme'
+
+#### Add 'theme' to INSTALLED_APPS list in settings.py
+
+```bash
+'theme'
+```
+
+#### Add tailwind app name in settings.py :
+
+```bash
+TAILWIND_APP_NAME = 'theme'
+```
+
+#### Check if node is installed and where
+
+```bash
+where npm
+```
+
+#### Copy the path and paste it to settings.py
+
+For example
+
+```bash
+NPM_BIN_PATH = "C:/Program Files/nodejs/npm.cmd"
+```
+
+#### Launch Tailwind
+
+```bash
+python manage.py tailwind install
+```
+
+There will be a folder 'templates' with base.html created inside 'theme' folder
+You can either 1. keep it and extend or 2. create your own templates in created apps
+
+#### Insert tailwind into your own base.html
+
+On top of the file
+
+```bash
+{% load static tailwind_tags %}
+```
+
+Into <head> tag:
+
+```bash
+{% tailwind_css %}
+```
+
+#### Configure hot reload
+
+```bash
+pip install django_browser_reload
+```
+
+#### Add it to INSTALLED_APPS list and also to MIDDLEWARE in settings.py
+
+```bash
+'django_browser_reload'
+```
+
+```bash
+'django_browser_reload.middleware.BrowserReloadMiddleware'
+```
+
+#### Add path to reload to urlpatterns in root urls file
+
+```bash
+path('__reload__', include('django_browser_reload.urls'))
+```
+
+#### Add internal urls to settings.py
+
+```bash
+INTERNAL_IPS = [
+    "127.0.0.1"
+]
+```
+
+#### Run two commands simultaneously
+
+```bash
+python manage.py tailwind start
+```
+
+```bash
+python manage.py runserver
 ```
