@@ -103,7 +103,7 @@ path('', include('main.urls', namespace='main')),
 #### Add views
 
 ```bash
-def featured_products(request):
+def home(request):
 def product_details(request, slug):
 ```
 
@@ -113,7 +113,7 @@ def product_details(request, slug):
 app_name = 'main'
 
 urlpatterns = [
-    path('', views.featured_products, name='featured_products'),
+    path('', views.home, name='home'),
     path('<slug:slug>/', views.product_details, name='product_details')
 ]
 ```
