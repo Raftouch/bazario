@@ -51,22 +51,39 @@
             {% endfor %}
         </div>
         <div class="flex justify-center mt-8">
-            <ul class="flex gap-5">
-                <li class="{% if not products.has_previous %}opacity-25{% endif %}">
-                    <a href="{% if products.has_previous %}?page={{ products.previous_page_number }}{% endif %}" class="a">Previous</a>
-                </li>
+            <ul class="flex gap-5 items-center">
+                {% if products.has_previous %}
+                    <li>
+                        <a href="?page={{ products.previous_page_number }}" class="text-blue-600 hover:underline">Previous</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <span class="text-gray-400 cursor-not-allowed">Previous</span>
+                    </li>
+                {% endif %}
+
 
                 {% for page in products.paginator.page_range %}
                     {% if page >= products.number|add:-2 and page <= products.number|add:2  %}
-                        <li>
-                            <a href="?page={{ page }}" class="{% if products.number == page %}opacity-25{% endif %}">{{ page }}</a>
+                         <li>
+                            {% if products.number == page %}
+                                <span class="font-bold text-blue-600">{{ page }}</span>
+                            {% else %}
+                                <a href="?page={{ page }}" class="text-gray-700 hover:underline">{{ page }}</a>
+                            {% endif %}
                         </li>
                     {% endif %}
                 {% endfor %}
                 
-                <li class="{% if not products.has_next %}opacity-25{% endif %}">
-                    <a href="{% if products.has_next %}?page={{ products.next_page_number }}{% endif %}" class="a">Next</a>
-                </li>
+                {% if products.has_next %}
+                    <li>
+                        <a href="?page={{ products.next_page_number }}" class="text-blue-600 hover:underline">Next</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <span class="text-gray-400 cursor-not-allowed">Next</span>
+                    </li>
+                {% endif %}
             </ul>
         </div>
 
