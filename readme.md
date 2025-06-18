@@ -288,3 +288,5 @@ python manage.py tailwind start
 ```bash
 python manage.py runserver
 ```
+
+### Add pagination to products list
