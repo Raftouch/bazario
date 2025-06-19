@@ -290,3 +290,15 @@ python manage.py runserver
 ```
 
 ### Add pagination to products list
+
+#### Start app cart
+
+```bash
+python manage.py startapp cart
+```
+
+#### Include main module in the INSTALLED_APPS list in settings.py
+
+```bash
+'cart'
+```
